@@ -17,7 +17,7 @@ if ( m > 6) {
    wordGrid.innerHTML += "<li>" + letters[i] + "</li>";
  }
 
- //#######$$$$$$----------- word objects ----------$$$$$$$#######//
+ //#######$$$$$$----------- word class ----------$$$$$$$#######//
 
   function Word(b, e) {
     this.b = b ;
@@ -29,6 +29,18 @@ if ( m > 6) {
       }
     }
   };
+
+
+
+  // alternative way to do this would be to make a function that
+  // automatically detects words that you input (can simply put the words in
+  // an array and have the function iterate over it) in the letters array and
+  // outputs the beginning and ending indices and then uses them to create the
+  // the word objects.
+
+  // actually could just simply have one array and do it the other way around:
+  // have the words already seperated and later create the letters array by taking
+  // the words without the spaces and make it one big grid.
 
  // -------  misc words
  it = new Word(0,2);
