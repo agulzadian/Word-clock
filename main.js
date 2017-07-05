@@ -35,11 +35,13 @@ function Word(b, e) {
 var words = ["it", "lorem", "past", "to", "minutes", "quarter", "half", "o", "clock", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve" ];
 
 
-function createWord(word) {
-  window[words[1]] = new Word(lettersString.indexOf(word), lettersString.indexOf(word) + word.length);
+function createWord(word, index) {
+  window[words[index]] = new Word(lettersString.indexOf(word), lettersString.indexOf(word) + word.length);
 }
 
-createWord(words[1].toUpperCase());
+for( i = 0; i < words.length; i++){
+  createWord(words[i].toUpperCase(), i);
+}
 
 console.log(lorem);
 
