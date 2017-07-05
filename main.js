@@ -2,11 +2,11 @@ var wordGrid = document.querySelector("#word-grid");
 var wordGridItems = document.querySelector("#word-grid").getElementsByTagName("li");
 var letters =  Array.from("ITAISQTENZTWENTYUFIVEYMINUTESKABQUARTERXHALFIPASTQTOEONEJTWOVTHREERFOURFIVEGLSIXESEVENREIGHTNINESTENELEVENTWELVEOXCLOCK");
 var lettersString = letters.join("");
-var words = ["it", "is", "past", "to", "minutes", "quarter", "half", "o", "clock", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve" ];
-
+var words = ["it", "is", "past", "to", "minutes", "quarter", "half", "clock", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve" ];
 var d = new Date();
 var h = d.getHours();
 var m = Math.floor((d.getMinutes())/5);
+
 //var m = 6;
 //var h = 9;
 
@@ -44,11 +44,22 @@ for( i = 0; i < words.length; i++){
  // ---------------------- hour and minute words
 
  //--minutes
+
+ // could actually optimize a bit more by making a new function that does the same as createWord but uses
+ // .lastIndexOf instead of .indexOf in order to target the hour words
+ // though I would run into trouble with the variable naming since the var names for the minList items need an M
+
+
+
+ // everything seems to work but still have to test mechanics pastthe 30 min mark
+
+
  var minList = [
   tenM = new Word(6,9),
   twentyM = new Word(10,16),
   fiveM = new Word(17,21),
-  aM = new Word(30,31), quarter, half, o, clock ];
+  aM = new Word(30,31),
+  quarter, half, o = new Word(112,113), clock ];
 
  //----------------- m = 0 ------ 1 ---- 2 ----- 3 ------- 4 ----- 5 ------- 6
  //--------------------- 0 ------ 5 ---- 10 ---- 15 ------ 20 ---- 25 ------ 30
@@ -57,7 +68,6 @@ for( i = 0; i < words.length; i++){
  //-- hours
  var hours = [one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve ];
 
-twelve.act();
 //-- misc word activation
 if (m > 34) {
   to.act();
