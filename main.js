@@ -21,8 +21,6 @@ if ( m > 6) {
 
  //#######$$$$$$----------- word class ----------$$$$$$$#######//
 
- var testArray = ["lorem"];
-
 function Word(b, e) {
   this.b = b ;
   this.e = e ;
@@ -34,11 +32,14 @@ function Word(b, e) {
   }
 };
 
+var words = ["it", "lorem", "past", "to", "minutes", "quarter", "half", "o", "clock", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve" ];
+
+
 function createWord(word) {
-  window[testArray[0]] = new Word(lettersString.indexOf(word), lettersString.indexOf(word) + word.length);
+  window[words[1]] = new Word(lettersString.indexOf(word), lettersString.indexOf(word) + word.length);
 }
 
-createWord(testArray[0].toUpperCase());
+createWord(words[1].toUpperCase());
 
 console.log(lorem);
 
