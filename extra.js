@@ -1,5 +1,20 @@
 
+
+
+
+
+
+
+
+
 var words = ["it", "is", "past", "to", "minutes", "quarter", "half", "o", "clock", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve" ];
+
+// -------  misc words
+it = new Word(0,2);
+is = new Word(3,5);
+past = new Word(45,49);
+to = new Word(50,52);
+minutes = new Word(22,29);
 
 
 /*var clock = document.querySelector("#clock");
