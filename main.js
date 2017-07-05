@@ -1,6 +1,7 @@
 var wordGrid = document.querySelector("#word-grid");
 var wordGridItems = document.querySelector("#word-grid").getElementsByTagName("li");
-var letters =  Array.from("ITAISQTENZTWENTYUFIVEYMINUTESKABQUARTERXHALFIPASTQTOEONEJTWOVTHREERFOURFIVEGLSIXESEVENREIGHTNINESTENELEVENTWELVEOXCLOCK");
+var letters =  Array.from("LOREMITAISQTENZTWENTYUFIVEYMINUTESKABQUARTERXHALFIPASTQTOEONEJTWOVTHREERFOURFIVEGLSIXESEVENREIGHTNINESTENELEVENTWELVEOXCLOCK");
+var lettersString = letters.join("");
 
 var d = new Date();
 var h = d.getHours();
@@ -8,6 +9,7 @@ var m = Math.floor((d.getMinutes())/5);
 //var m = 6;
 //var h = 9;
 
+// have the minute words go in reverse order after the 30 minute mark (a quarter, 20, 25, 30, 25, 20, a quarter, etc.)
 if ( m > 6) {
   m = m - ((m-6)*2);
 }
@@ -19,28 +21,40 @@ if ( m > 6) {
 
  //#######$$$$$$----------- word class ----------$$$$$$$#######//
 
-  function Word(b, e) {
-    this.b = b ;
-    this.e = e ;
+ var testArray = ["lorem"];
 
-    this.act = function() {
-      for (i = b; i < e; i++){
-        wordGridItems[i].classList.add("active");
-      }
+function Word(b, e) {
+  this.b = b ;
+  this.e = e ;
+
+  this.act = function() {
+    for (i = b; i < e; i++){
+      wordGridItems[i].classList.add("active");
     }
-  };
+  }
+};
 
-  // Test 
+function createWord(word) {
+  window[testArray[0]] = new Word(lettersString.indexOf(word), lettersString.indexOf(word) + word.length);
+}
+
+createWord(testArray[0].toUpperCase());
+
+console.log(lorem);
+
+
+
+
+
+
+
+
 
   // alternative way to do this would be to make a function that
   // automatically detects words that you input (can simply put the words in
   // an array and have the function iterate over it) in the letters array and
   // outputs the beginning and ending indices and then uses them to create the
   // the word objects.
-
-  // actually could just simply have one array and do it the other way around:
-  // have the words already seperated and later create the letters array by taking
-  // the words without the spaces and make it one big grid.
 
  // -------  misc words
  it = new Word(0,2);
@@ -82,6 +96,7 @@ if ( m > 6) {
   eleven = new Word(100, 106),
   twelve = new Word(106,112),
   ];
+
 
 //-- misc word activation
 if (m > 34) {

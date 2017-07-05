@@ -1,3 +1,7 @@
+
+var words = ["it", "is", "past", "to", "minutes", "quarter", "half", "o", "clock", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve" ];
+
+
 /*var clock = document.querySelector("#clock");
 var wordGrid = document.querySelector("#word-grid").getElementsByTagName("li");
 var d = new Date();
