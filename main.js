@@ -34,7 +34,17 @@ function Word(b, e) {
 };
 
 function createWord(word, index) {
-  window[words[index]] = new Word(lettersString.indexOf(word), lettersString.indexOf(word) + word.length);
+  var begin = lettersString.indexOf(word);
+  window[words[index]] = new Word(begin, begin + word.length);
+}
+
+for( i = 0; i < words.length; i++){
+  createWord(words[i].toUpperCase(), i);
+}
+
+function createWordM(word, index) {
+  var begin = lettersString.lastIndexOf(word);
+  window[words[index]] = new Word(begin, begin + word.length);
 }
 
 for( i = 0; i < words.length; i++){
@@ -47,12 +57,19 @@ for( i = 0; i < words.length; i++){
 
  // could actually optimize a bit more by making a new function that does the same as createWord but uses
  // .lastIndexOf instead of .indexOf in order to target the hour words
+ // maybe wouldn't even need to make a new function but simply add a "minute" option in the current function
+ // that can later be seperately called
+
  // though I would run into trouble with the variable naming since the var names for the minList items need an M
+ // nice solution for the last problem would be to use the lastIndexOf function and still use the word, but
+ // add an additional M at the end during the naming of the variable
+ // so that would be window[words[index]] + M in the create word function
 
 
 
  // everything seems to work but still have to test mechanics pastthe 30 min mark
 
+var minListM = [ten, twenty, five, a, quarter, half, o, clock];
 
  var minList = [
   tenM = new Word(6,9),
