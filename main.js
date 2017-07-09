@@ -1,14 +1,26 @@
-var wordGrid = document.querySelector("#word-grid");
-var wordGridItems = document.querySelector("#word-grid").getElementsByTagName("li");
+var wordGrid = document.querycreateor("#word-grid");
+var wordGridItems = document.querycreateor("#word-grid").getElementsByTagName("li");
 var letters =  Array.from("ITAISQTENZTWENTYUFIVEYMINUTESKABQUARTERXHALFIPASTQTOEONEJTWOVTHREERFOURFIVEGLSIXESEVENREIGHTNINESTENELEVENTWELVEOXCLOCK");
 var lettersString = letters.join("");
-var words = ["it", "is", "past", "to", "minutes", "quarter", "half", "clock", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve" ];
 var d = new Date();
 var h = d.getHours();
 var m = Math.floor((d.getMinutes())/5);
 
-//var m = 6;
-//var h = 9;
+// These variables are created by the create word function in combination with the create word function
+var hoursWords = [one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve ];
+var minListWords = [ten, twenty, five, a, quarter, half, o, clock];
+var miscWords = [it, is, past, to, minutes];
+
+var minList = [
+ tenM = new Word(6,9),
+ twentyM = new Word(10,16),
+ fiveM = new Word(17,21),
+ aM = new Word(30,31),
+ quarter, half, o = new Word(112,113), clock ];
+
+var words = ["it", "is", "past", "to", "minutes", "quarter", "half", "clock", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve" ];
+
+
 
 // have the minute words go in reverse order after the 30 minute mark (a quarter, 20, 25, 30, 25, 20, a quarter, etc.)
 if ( m > 6) {
@@ -22,7 +34,7 @@ if ( m > 6) {
 
  //#######$$$$$$----------- word class ----------$$$$$$$#######//
 
-function Word(b, e) {
+function Word(b, e) { // selects the right characters to feed into the create word functions
   this.b = b ;
   this.e = e ;
 
@@ -33,22 +45,35 @@ function Word(b, e) {
   }
 };
 
-function createWord(word, index) {
+// create words for the minutes
+function createMinutesWords(word, index) {
   var begin = lettersString.indexOf(word);
-  window[words[index]] = new Word(begin, begin + word.length);
+  window[words[index]] = new Word(begin, begin + word.length); // here words should become minListM-> string array
 }
 
-for( i = 0; i < words.length; i++){
-  createWord(words[i].toUpperCase(), i);
+for( i = 0; i < words.length; i++){ // this for loop actually calls the create function
+  createMinutesWords(words[i].toUpperCase(), i);// here words should become minListM-> string array
 }
 
-function createWordM(word, index) {
+
+// create words for the hours
+function createHoursWords(word, index) {
   var begin = lettersString.lastIndexOf(word);
-  window[words[index]] = new Word(begin, begin + word.length);
+  window[words[index]] = new Word(begin, begin + word.length); // here words should become hours-> string array
 }
 
 for( i = 0; i < words.length; i++){
-  createWord(words[i].toUpperCase(), i);
+  createHoursWords(words[i].toUpperCase(), i);// here words should become hours-> string array
+}
+
+// create misc words
+function createMiscWords(word, index) {
+  var begin = lettersString.lastIndexOf(word);
+  window[words[index]] = new Word(begin, begin + word.length); // here words should become minListM-> string array
+}
+
+for( i = 0; i < words.length; i++){
+  createMiscWords(words[i].toUpperCase(), i);// here words should become minListM-> string array
 }
 
  // ---------------------- hour and minute words
@@ -65,25 +90,19 @@ for( i = 0; i < words.length; i++){
  // add an additional M at the end during the naming of the variable
  // so that would be window[words[index]] + M in the create word function
 
+//could optimize further by including the
+
 
 
  // everything seems to work but still have to test mechanics pastthe 30 min mark
 
-var minListM = [ten, twenty, five, a, quarter, half, o, clock];
 
- var minList = [
-  tenM = new Word(6,9),
-  twentyM = new Word(10,16),
-  fiveM = new Word(17,21),
-  aM = new Word(30,31),
-  quarter, half, o = new Word(112,113), clock ];
+
 
  //----------------- m = 0 ------ 1 ---- 2 ----- 3 ------- 4 ----- 5 ------- 6
  //--------------------- 0 ------ 5 ---- 10 ---- 15 ------ 20 ---- 25 ------ 30
  var minListSel = [    [6,7]   ,  2  ,   0  ,   [3,4]  ,   1  ,   [1, 2] ,   5  ];
 
- //-- hours
- var hours = [one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve ];
 
 //-- misc word activation
 if (m > 34) {
