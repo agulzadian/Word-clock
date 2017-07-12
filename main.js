@@ -6,7 +6,7 @@ var d = new Date();
 var h = d.getHours();
 var m = Math.floor((d.getMinutes())/5);
 
-// These variables are created by the create word function in combination with the create word function
+// These variables are created by the select b and e word function in combination with the create word function
 var hoursWords = [one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve ];
 var minListWords = [ten, twenty, five, a, quarter, half, o, clock];
 var miscWords = [it, is, past, to, minutes];
@@ -45,7 +45,11 @@ function Word(b, e) { // selects the right characters to feed into the create wo
   }
 };
 
-// create words for the minutes
+// create words for the minutes - outputs a variable with a name corresponding to a string that's fed in.
+// the string is fed from the words array
+
+// I need to reverse this by feeding in the variable names in the minlistWords
+
 function createMinutesWords(word, index) {
   var begin = lettersString.indexOf(word);
   window[words[index]] = new Word(begin, begin + word.length); // here words should become minListM-> string array
@@ -54,6 +58,30 @@ function createMinutesWords(word, index) {
 for( i = 0; i < words.length; i++){ // this for loop actually calls the create function
   createMinutesWords(words[i].toUpperCase(), i);// here words should become minListM-> string array
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // create words for the hours
@@ -89,9 +117,6 @@ for( i = 0; i < words.length; i++){
  // nice solution for the last problem would be to use the lastIndexOf function and still use the word, but
  // add an additional M at the end during the naming of the variable
  // so that would be window[words[index]] + M in the create word function
-
-//could optimize further by including the
-
 
 
  // everything seems to work but still have to test mechanics pastthe 30 min mark
