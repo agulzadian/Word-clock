@@ -33,6 +33,12 @@ if ( min > 6) { // reverses the order of the min words to be shown
     }
   };
 
+  // take the new word creation function
+  // feed it the words from the misc word list below here
+  // not in string form but just words
+  // figure out how the begin and end of the word are determined
+  // redo it if needed
+
  // -------  misc words
  it = new Word(0,2);
  is = new Word(3,5);
