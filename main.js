@@ -11,6 +11,9 @@ var min = Math.floor((d.getMinutes())/5);
 //var min = 3;
 //var h = 9;
 
+// would be cool to add a daily quote thing
+
+
 if ( min > 6) { // reverses the order of the min words to be shown
   m = min - ((min - 6) * 2);
 } else {
@@ -36,7 +39,7 @@ if ( min > 6) { // reverses the order of the min words to be shown
   };
 
   function createWords(word, index) {
-    var begin = lettersString.indexOf(word);
+    var begin = lettersString.lastIndexOf(word);
     window[words[index]] = new Word(begin, begin + word.length); // here words should become minListM-> string array
   }
 

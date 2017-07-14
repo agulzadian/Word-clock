@@ -1,10 +1,8 @@
-.active {
-color: blue;
-}
+  .active {
+    color: white;
+    opacity: 1;
+  }
 
-.inactive {
-  color: grey;
-}
 
 ul {
     margin-top: 40px;
@@ -14,14 +12,18 @@ ul {
 
 li {
   color: grey;
+  opacity: 0.2;
   list-style: none;
   display: inline-block;
   margin: 2%;
 }
 
-  div {
+body {
+    background-image: url("images/bg.jpg");
+    background-color: #cccccc;
+}
 
-  }
+
 
 
 /*
