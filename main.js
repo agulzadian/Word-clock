@@ -11,9 +11,6 @@ var min = Math.floor((d.getMinutes())/5);
 //var min = 3;
 //var h = 9;
 
-// would be cool to add a daily quote thing
-
-
 if ( min > 6) { // reverses the order of the min words to be shown
   m = min - ((min - 6) * 2);
 } else {
@@ -90,3 +87,29 @@ if (h < 13 && h > 0){
 } else {
   hours[11].act();
 }
+
+
+
+// would be cool to add a daily quote thing
+
+// turn the ul in the html into a table so i can more specifically define how the characters are distributed
+// across the grid, since in tables i can select specific columns and rows based on their numbers
+// and use those numbers to make conditions to make the words aren't cut off:
+// for example: if the width of the grid being rendered in "real time" is 10, and the word minutes starts at
+// column 8 (and therefore is going to be cut off after "mi"), i can write to inject another two characters
+// in front of the word minutes so it's bumped to the next row.
+
+// I don't think I need to change the letterString system, but what I need to do is make another var before lettersString
+// that contains individual characters as individual array items (i.e. var letterChars) that is later used to
+// create the letterString var bby doing letterChars.join().
+// this way I can inject filler characters at whatever index in the letterChars array I wish
+
+// using this method of creating the grid and filler chars, I can also make it so that there
+// are filler chars all the way to the edges of the screen and apply specific opacities according
+// to the column (and row) number and by that have the filler chars fade out towards the edges of the screen
+// maybe I should make seperate grids for the fade out chars that seamlessly stick to the actual word clock grid
+// so like FILLER GRID | CLOCK GRID | FILLER GRID
+
+// would also be super dope to have a subtle glow/ripple/wave effect by having the opactiy go slightly up in
+// a wave pattern from the first column to the last. Would be extra dop ( but i think pretty hard) to have the
+// wave glow effect go diagonal
