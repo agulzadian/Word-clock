@@ -7,6 +7,7 @@ var words = ["it", "is", "past", "to", "minutes", "quarter", "half", "clock", "o
 var d = new Date();
 var h = d.getHours();
 var min = Math.floor((d.getMinutes())/5);
+var minToPast = Math.floor((d.getMinutes())/5);
 var sec = d.getSeconds();
 
 setInterval(function(){
@@ -14,6 +15,10 @@ setInterval(function(){
   h = d.getHours();
   min = Math.floor((d.getMinutes())/5);
   sec = d.getSeconds();
+
+  if ( min > 6) { // reverses the order of the min words to be shown
+    min = min - ((min - 6) * 2);
+  }
 
   console.log(h + " " + min + " " + sec);
 },1000);
@@ -63,7 +68,7 @@ if ( min > 6) { // reverses the order of the min words to be shown
  //--minutes
  var minList = [tenM = new Word(6,9), twentyM = new Word(10,16), fiveM = new Word(17,21), aM = new Word(30,31), quarter, half, o = new Word(112,113), clock];
 
- //----------------- m = 0 ------ 1 ---- 2 ----- 3 ------- 4 ----- 5 ------- 6
+ //--------------- min = 0 ------ 1 ---- 2 ----- 3 ------- 4 ----- 5 ------- 6
  //--------------------- 0 ------ 5 ---- 10 ---- 15 ------ 20 ---- 25 ------ 30
  var minListSel = [    [6,7]   ,  2  ,   0  ,   [3,4]  ,   1  ,   [1, 2] ,   5  ];
 
@@ -71,10 +76,10 @@ if ( min > 6) { // reverses the order of the min words to be shown
  var hours = [one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, ];
 
 //-- misc word activation
-if (min > 6) {
+if (minToPast > 6) {
   to.act();
   h = h + 1;
-} else if ( min > 0 ) {
+} else if ( minToPast > 0 ) {
   past.act();
 }
 
