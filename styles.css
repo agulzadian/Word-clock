@@ -3,6 +3,11 @@
   opacity: 1;
 }
 
+.inactive {
+  color: red;
+  opacity: 0.2;
+}
+
 #word-grid {
   display: flex;
   flex-wrap: wrap;

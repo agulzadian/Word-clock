@@ -7,14 +7,22 @@ var words = ["it", "is", "past", "to", "minutes", "quarter", "half", "clock", "o
 var d = new Date();
 var h = d.getHours();
 var min = Math.floor((d.getMinutes())/5);
+var sec = d.getSeconds();
+
+setInterval(function(){
+  d = new Date();
+  h = d.getHours();
+  min = Math.floor((d.getMinutes())/5);
+  sec = d.getSeconds();
+
+  console.log(h + " " + min + " " + sec);
+},1000);
 
 //var min = 3;
 //var h = 9;
 
 if ( min > 6) { // reverses the order of the min words to be shown
-  m = min - ((min - 6) * 2);
-} else {
-  m = min;
+  min = min - ((min - 6) * 2);
 }
 
 // ---------- make grid out of array
@@ -31,6 +39,12 @@ if ( min > 6) { // reverses the order of the min words to be shown
     this.act = function() {
       for (i = b; i < e; i++){
         wordGridItems[i].classList.add("active");
+      }
+    }
+
+    this.inact = function() {
+      for (i = b; i < e; i++){
+        wordGridItems[i].classList.add("inactive");
       }
     }
   };
@@ -67,16 +81,16 @@ if (min > 6) {
 it.act();
 is.act();
 
-if ( m != 0 && m != 3 && m != 6 ) {
+if ( min != 0 && min != 3 && min != 6 ) {
   minutes.act();
 }
 
 //-- minutes activation
-if (Array.isArray(minListSel[m]) ) {
-  minList[minListSel[m][0]].act();
-  minList[minListSel[m][1]].act();
+if (minListSel[min].length == 2 ) {// if the min selection has two words
+  minList[minListSel[min][0]].act();
+  minList[minListSel[min][1]].act();
 } else {
-  minList[minListSel[m]].act();
+  minList[minListSel[min]].act();
 }
 
 //-- hours activation
