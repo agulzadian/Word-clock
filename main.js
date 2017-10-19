@@ -109,6 +109,44 @@ if (h < 13 && h > 0){
 
 
 
+// LEFTOVER TRYOUT CODE
+/*
+function activate(num){
+  if (num == 0 || num == 3 || num == 5) {
+    minList[minListSel[num][0]].act();
+    minList[minListSel[num][1]].act();
+  } else {
+    minList[minListSel[num]].act();
+  }
+}
+
+function inactivate(num){
+  if (num == 0 || num == 3 || num == 5) {
+    minList[minListSel[num][0]].inact();
+    minList[minListSel[num][1]].inact();
+  } else {
+    minList[minListSel[num]].inact();
+  }
+}
+
+for (var i = 0; i < minListSel.length; i++) {
+  // console.log("i is "+ i + " min list word is " + minListSel[i]);
+
+  // console.log(i);
+  if (i == min) {
+    activate(i);
+  }
+}
+
+for (var i = minListSel.length; i > 0 ; i--) {
+  // console.log("i is "+ i + " min list word is " + minListSel[i]);
+
+  console.log(i);
+  if (i != min) {
+    inactivate(i);
+  }
+*/
+
 // would be cool to add a daily quote thing
 
 // turn the ul in the html into a table so i can more specifically define how the characters are distributed
