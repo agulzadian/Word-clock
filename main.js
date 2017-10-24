@@ -18,13 +18,11 @@ setInterval(function(){
 
   if ( min > 6) { // reverses the order of the min words to be shown
     min = min - ((min - 6) * 2);
+    h = h + 1;
   }
 
   console.log(h + " " + min + " " + sec);
 },1000);
-
-//var min = 3;
-//var h = 9;
 
 if ( min > 6) { // reverses the order of the min words to be shown
   min = min - ((min - 6) * 2);
@@ -37,43 +35,52 @@ if ( min > 6) { // reverses the order of the min words to be shown
 
  //#######$$$$$$----------- word class ----------$$$$$$$#######//
 
-  function Word(b, e) {
-    this.b = b ;
-    this.e = e ;
+function Word(b, e) {
+  this.b = b ;
+  this.e = e ;
+  this.active = false;
 
-    this.act = function() {
-      for (i = b; i < e; i++){
-        wordGridItems[i].classList.add("active");
-      }
+  this.act = function() {
+    for (i = b; i < e; i++){
+      wordGridItems[i].classList.remove("inactive");
+      wordGridItems[i].classList.add("active");
     }
-
-    this.inact = function() {
-      for (i = b; i < e; i++){
-        wordGridItems[i].classList.add("inactive");
-      }
-    }
-  };
-
-  function createWords(word, index) {
-    var begin = lettersString.lastIndexOf(word);
-    window[words[index]] = new Word(begin, begin + word.length); // here words should become minListM-> string array
   }
 
-  for( i = 0; i < words.length; i++){ // this for loop actually calls the create function
-    createWords(words[i].toUpperCase(), i);// here words should become minListM-> string array
+  this.inact = function() {
+    for (i = b; i < e; i++){
+      wordGridItems[i].classList.remove("active");
+      wordGridItems[i].classList.add("inactive");
+    }
   }
 
- // ---------------------- hour and minute words
+  this.activate = function() {
+    if (this.active) {
+      this.act();
+    } else {
+      this.inact();
+    }
+  }
+};
 
- //--minutes
- var minList = [tenM = new Word(6,9), twentyM = new Word(10,16), fiveM = new Word(17,21), aM = new Word(30,31), quarter, half, o = new Word(112,113), clock];
+function createWords(word, index) {
+  var begin = lettersString.lastIndexOf(word);
+  window[words[index]] = new Word(begin, begin + word.length); // here words should become minListM-> string array
+}
 
- //--------------- min = 0 ------ 1 ---- 2 ----- 3 ------- 4 ----- 5 ------- 6
- //--------------------- 0 ------ 5 ---- 10 ---- 15 ------ 20 ---- 25 ------ 30
- var minListSel = [    [6,7]   ,  2  ,   0  ,   [3,4]  ,   1  ,   [1, 2] ,   5  ];
+for( i = 0; i < words.length; i++){ // this for loop actually calls the create function
+  createWords(words[i].toUpperCase(), i);// here words should become minListM-> string array
+}
 
- //-- hours
- var hours = [one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, ];
+//--minutes
+var minList = [tenM = new Word(6,9), twentyM = new Word(10,16), fiveM = new Word(17,21), aM = new Word(30,31), quarter, half, o = new Word(112,113), clock];
+
+//--------------- min = 0 ------ 1 ---- 2 ----- 3 ------- 4 ----- 5 ------- 6
+//--------------------- 0 ------ 5 ---- 10 ---- 15 ------ 20 ---- 25 ------ 30
+var minListSel = [    [6,7]   ,  2  ,   0  ,   [3,4]  ,   1  ,   [1, 2] ,   5  ];
+
+//-- hours
+var hours = [one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, ];
 
 //-- misc word activation
 if (minToPast > 6) {
@@ -87,10 +94,46 @@ it.act();
 is.act();
 
 if ( min != 0 && min != 3 && min != 6 ) {
-  minutes.act();
+  minutes.active = true;
 }
 
-//-- minutes activation
+// ============== UPDATE ACTIVATION ============ //
+setInterval(function(){
+  for (var i = 0; i < minList.length; i++) {
+    minList[i].active = false;
+  }
+
+  for (var i = 0; i < hours.length; i++) {
+    hours[i].active = false;
+  }
+
+  //-- minutes activation
+  if (minListSel[min].length == 2 ) {// if the min selection has two words
+    minList[minListSel[min][0]].active = true;
+    minList[minListSel[min][1]].active = true;
+  } else {
+    minList[minListSel[min]].active = true;
+  }
+
+  //-- hours activation
+  if (h < 13 && h > 0){
+    hours[h - 1].active = true;
+  } else if (h > 12) {
+    hours[h - 13].active = true;
+  } else {
+    hours[11].active = true;
+  }
+
+  for (var i = 0; i < hours.length; i++) {
+    hours[i].activate();
+  }
+
+  for (var i = 0; i < minList.length; i++) {
+    minList[i].activate();
+  }
+},1000);
+
+// =============== INITIAL ACTIVATION =============== //
 if (minListSel[min].length == 2 ) {// if the min selection has two words
   minList[minListSel[min][0]].act();
   minList[minListSel[min][1]].act();
@@ -98,7 +141,6 @@ if (minListSel[min].length == 2 ) {// if the min selection has two words
   minList[minListSel[min]].act();
 }
 
-//-- hours activation
 if (h < 13 && h > 0){
   hours[h - 1].act();
 } else if (h > 12) {
@@ -107,45 +149,7 @@ if (h < 13 && h > 0){
   hours[11].act();
 }
 
-
-
-// LEFTOVER TRYOUT CODE
-/*
-function activate(num){
-  if (num == 0 || num == 3 || num == 5) {
-    minList[minListSel[num][0]].act();
-    minList[minListSel[num][1]].act();
-  } else {
-    minList[minListSel[num]].act();
-  }
-}
-
-function inactivate(num){
-  if (num == 0 || num == 3 || num == 5) {
-    minList[minListSel[num][0]].inact();
-    minList[minListSel[num][1]].inact();
-  } else {
-    minList[minListSel[num]].inact();
-  }
-}
-
-for (var i = 0; i < minListSel.length; i++) {
-  // console.log("i is "+ i + " min list word is " + minListSel[i]);
-
-  // console.log(i);
-  if (i == min) {
-    activate(i);
-  }
-}
-
-for (var i = minListSel.length; i > 0 ; i--) {
-  // console.log("i is "+ i + " min list word is " + minListSel[i]);
-
-  console.log(i);
-  if (i != min) {
-    inactivate(i);
-  }
-*/
+// add a mechanisum that properly rounds of to the nearest min
 
 // would be cool to add a daily quote thing
 
